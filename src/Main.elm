@@ -13,17 +13,13 @@ import RemoteData exposing (..)
 
 
 type alias Model =
-    { dogUrl : WebData DogUrl
+    { dogUrl : WebData String
     }
 
 
 type Msg
     = GetNewDog
-    | DogResponse (WebData DogUrl)
-
-
-type alias DogUrl =
-    String
+    | DogResponse (WebData String)
 
 
 init : () -> ( Model, Cmd Msg )
@@ -69,7 +65,7 @@ view model =
         ]
 
 
-viewDog : WebData DogUrl -> Html Msg
+viewDog : WebData String -> Html Msg
 viewDog webData =
     case webData of
         NotAsked ->
@@ -121,6 +117,7 @@ gridTemplate areas rows cols =
         ]
 
 
+gridContainer : Attribute Msg
 gridContainer =
     css [ contentBig, contentSmall ]
 
@@ -129,14 +126,17 @@ gridContainer =
 -- grid area references
 
 
+gridMain : Attribute Msg
 gridMain =
     css [ property "grid-area" "main" ]
 
 
+gridButton : Attribute Msg
 gridButton =
     css [ property "grid-area" "button" ]
 
 
+gridUrl : Attribute Msg
 gridUrl =
     css [ property "grid-area" "url" ]
 
